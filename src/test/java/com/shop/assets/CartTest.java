@@ -1,12 +1,13 @@
 package com.shop.assets;
 
-import com.shop.util.Constants;
+import com.shop.util.Constants.SalesTaxCategory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,12 +22,27 @@ class CartTest {
   void setUp() {
     cart = new Cart();
     item1 =
-        new Item("book", BigInteger.TEN, Constants.salesTaxCategory.LOCAL, BigDecimal.valueOf(4));
-    item1.addSalesTax(BigDecimal.valueOf(1));
+        new Item(
+            "book",
+            BigInteger.TEN,
+            new ArrayList<SalesTaxCategory>() {
+              {
+                add(SalesTaxCategory.LOCAL);
+              }
+            },
+            BigDecimal.valueOf(4));
+    item1.setSalesTax(BigDecimal.valueOf(1));
     item2 =
         new Item(
-            "perfume", BigInteger.TEN, Constants.salesTaxCategory.LOCAL, BigDecimal.valueOf(2));
-    item2.addSalesTax(BigDecimal.valueOf(1));
+            "perfume",
+            BigInteger.TEN,
+            new ArrayList<SalesTaxCategory>() {
+              {
+                add(SalesTaxCategory.LOCAL);
+              }
+            },
+            BigDecimal.valueOf(2));
+    item2.setSalesTax(BigDecimal.valueOf(1));
   }
 
   @AfterEach

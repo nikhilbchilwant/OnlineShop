@@ -1,10 +1,9 @@
 package com.shop.util;
 
 public final class Constants {
-  public static enum salesTaxCategory {
+  public enum SalesTaxCategory {
     LOCAL,
     EXEMPTED,
-    IMPORTED,
-    UNKNOWN
+    IMPORTED
   }
 }

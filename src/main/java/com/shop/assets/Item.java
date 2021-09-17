@@ -1,12 +1,13 @@
 package com.shop.assets;
 
-import com.shop.util.Constants.salesTaxCategory;
+import com.shop.util.Constants.SalesTaxCategory;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 
 public class Item {
 
@@ -18,7 +19,7 @@ public class Item {
   private BigInteger
       quantity; // https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html
 
-  @Getter @Setter private salesTaxCategory salesTaxCategory;
+  @Getter @Setter private List<SalesTaxCategory> salesTaxCategories;
 
   @Getter private BigDecimal basePrice;
 
@@ -28,11 +29,11 @@ public class Item {
   public Item(
       @NonNull String type,
       @NonNull BigInteger quantity,
-      @NonNull salesTaxCategory salesTaxCategory,
+      @NonNull List<SalesTaxCategory> salesTaxCategory,
       @NonNull BigDecimal basePrice) {
     this.type = type;
     this.quantity = quantity;
-    this.salesTaxCategory = salesTaxCategory;
+    this.salesTaxCategories = salesTaxCategory;
     this.basePrice = basePrice;
     this.salesTax = BigDecimal.ZERO;
   }
@@ -42,7 +43,7 @@ public class Item {
    *
    * @param salesTax sales tax per item
    */
-  public void addSalesTax(@NonNull BigDecimal salesTax) {
+  public void setSalesTax(@NonNull BigDecimal salesTax) {
     boolean isFormatted = salesTax.scale() <= SCALE;
     BigDecimal fraction = salesTax.remainder(BigDecimal.ONE);
     boolean isRounded =
@@ -60,7 +61,7 @@ public class Item {
     if (!isFormatted || !isRounded) {
       throw new IllegalArgumentException(error);
     } else {
-      this.salesTax = this.salesTax.add(salesTax);
+      this.salesTax = salesTax;
       this.netPrice = this.basePrice.add(this.salesTax);
     }
   }

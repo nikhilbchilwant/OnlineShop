@@ -30,6 +30,9 @@ public class Cart {
 
   /** Return the item as per the FIFO (First In First Out) policy. */
   public Item pop() {
+    if (this.items.isEmpty()) {
+      return null;
+    }
     Item poppedItem = this.items.remove(0);
     this.totalSalesTax =
         totalSalesTax.subtract(
