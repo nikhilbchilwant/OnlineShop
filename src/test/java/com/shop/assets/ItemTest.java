@@ -17,7 +17,7 @@ class TestItem {
 
   @BeforeEach
   void setUp() {
-    item = new Item("book", BigInteger.ONE, salesTaxCategory.LOCAL, BigDecimal.TEN);
+    item = new Item("book", BigInteger.TEN, salesTaxCategory.LOCAL, BigDecimal.valueOf(4));
   }
 
   @AfterEach
@@ -25,27 +25,20 @@ class TestItem {
 
   @Test
   public void testSalesTaxFormatting() throws IllegalArgumentException {
-    assertThrows(
-        IllegalArgumentException.class,
-        () -> {
-          item.setSalesTax(BigDecimal.valueOf(10.235));
-        });
+    assertThrows(IllegalArgumentException.class, () -> item.addSalesTax(BigDecimal.valueOf(1.235)));
   }
 
   @Test
   public void testSalesTaxRounding() throws IllegalArgumentException {
-    assertThrows(
-        IllegalArgumentException.class,
-        () -> {
-          item.setSalesTax(BigDecimal.valueOf(10.23));
-        });
+    assertThrows(IllegalArgumentException.class, () -> item.addSalesTax(BigDecimal.valueOf(1.23)));
   }
 
   /** If the input is correct, sales tax should be set correctly. */
   @Test
   public void testSalesTax() {
-    item.setSalesTax(BigDecimal.valueOf(10.2));
-    assertEquals(BigDecimal.valueOf(10.2), item.getSalesTax());
+    item.addSalesTax(BigDecimal.valueOf(1.2));
+    assertEquals(BigDecimal.valueOf(1.2), item.getSalesTax());
+    assertEquals(BigDecimal.valueOf(5.2), item.getNetPrice());
   }
 
   // Skipping tests for constructors, fields as those are not meaningful tests

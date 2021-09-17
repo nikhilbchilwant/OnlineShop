@@ -20,8 +20,7 @@ public class Item {
 
   @Getter @Setter private salesTaxCategory salesTaxCategory;
 
-  @Getter @Setter
-  private BigDecimal basePrice; // assuming that we will deal with realistic, small numbers
+  @Getter private BigDecimal basePrice;
 
   @Getter private BigDecimal salesTax;
   @Getter @Setter private BigDecimal netPrice; // including all sales tax
@@ -35,14 +34,15 @@ public class Item {
     this.quantity = quantity;
     this.salesTaxCategory = salesTaxCategory;
     this.basePrice = basePrice;
+    this.salesTax = BigDecimal.ZERO;
   }
 
   /**
    * Sets sales tax amount after checking for formatting and rounding off rule.
    *
-   * @param salesTax
+   * @param salesTax sales tax per item
    */
-  public void setSalesTax(@NonNull BigDecimal salesTax) {
+  public void addSalesTax(@NonNull BigDecimal salesTax) {
     boolean isFormatted = salesTax.scale() <= SCALE;
     BigDecimal fraction = salesTax.remainder(BigDecimal.ONE);
     boolean isRounded =
@@ -60,7 +60,8 @@ public class Item {
     if (!isFormatted || !isRounded) {
       throw new IllegalArgumentException(error);
     } else {
-      this.salesTax = salesTax;
+      this.salesTax = this.salesTax.add(salesTax);
+      this.netPrice = this.basePrice.add(this.salesTax);
     }
   }
 }
