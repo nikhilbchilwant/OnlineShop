@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 
 public class Item {
 
@@ -64,5 +65,21 @@ public class Item {
       this.salesTax = salesTax;
       this.netPrice = this.basePrice.add(this.salesTax);
     }
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Item item = (Item) o;
+    return getType().equals(item.getType())
+        && getQuantity().equals(item.getQuantity())
+        && getSalesTaxCategories().equals(item.getSalesTaxCategories())
+        && getBasePrice().equals(item.getBasePrice());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getType(), getQuantity(), getSalesTaxCategories(), getBasePrice());
   }
 }
