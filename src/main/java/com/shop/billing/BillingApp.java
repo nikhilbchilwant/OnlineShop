@@ -34,6 +34,7 @@ public class BillingApp {
     }
     System.out.println("Sales Taxes: " + cart.getTotalSalesTax().toString());
     System.out.println("Total: " + cart.getTotalAmount().toString());
+    System.out.println();
   }
 
   private List<Item> calculateTaxes(List<Item> items) {
