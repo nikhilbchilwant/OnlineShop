@@ -19,7 +19,7 @@ public final class Constants {
   public static final MathContext MATH_CONTEXT = new MathContext(2, RoundingMode.CEILING);
   public static final String[] EXEMPTED_ITEMS = {
     "book", "chocolate", "pill"
-  }; // TODO: make as exhaustive as possible.
+  };
   public static final CharSequence IMPORTED = "imported";
 
   public enum SalesTaxCategory {

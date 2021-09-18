@@ -44,7 +44,7 @@ public class Cart {
   }
 
   /** Gives iterator over stored items. */
-  public Iterator<Item> peek() {
+  public Iterator<Item> iterator() {
     return this.items.iterator();
   }
 }

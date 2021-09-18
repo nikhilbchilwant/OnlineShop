@@ -78,7 +78,7 @@ class CartTest {
     cart.push(item2);
 
     int itemCounter = 0;
-    Iterator<Item> iterator = cart.peek();
+    Iterator<Item> iterator = cart.iterator();
     while (iterator.hasNext()) {
       iterator.next();
       itemCounter++;

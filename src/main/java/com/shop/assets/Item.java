@@ -25,7 +25,6 @@ public class Item {
   @Getter private BigDecimal basePrice;
 
   @Getter private BigDecimal salesTax;
-  @Getter @Setter private BigDecimal netPrice; // including all sales tax
 
   public Item(
       @NonNull String type,
@@ -63,8 +62,11 @@ public class Item {
       throw new IllegalArgumentException(error);
     } else {
       this.salesTax = salesTax;
-      this.netPrice = this.basePrice.add(this.salesTax);
     }
+  }
+
+  public BigDecimal getNetPrice() {
+    return this.basePrice.add(this.salesTax);
   }
 
   @Override
