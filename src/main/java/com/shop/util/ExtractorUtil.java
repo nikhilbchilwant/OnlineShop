@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Creates Item objects by extracting data from raw order texts.
+ */
 public class ExtractorUtil {
 
   public static Item extractItem(String orderLine) {
