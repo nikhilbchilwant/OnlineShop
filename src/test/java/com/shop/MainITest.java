@@ -1,5 +1,6 @@
 package com.shop;
 
+import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 
+@Log4j2
 public class MainITest {
 
   Path orderPath;
@@ -32,9 +34,10 @@ public class MainITest {
   @Test
   public void testMain() {
     BufferedWriter bufferedWriter;
+    log.info(orderFile.getAbsolutePath());
     try (FileWriter writer = new FileWriter(orderFile)) {
       bufferedWriter = new BufferedWriter(writer);
-      bufferedWriter.write("1 book at 12.49");
+      bufferedWriter.write("1 imported phone at 12.49");
       bufferedWriter.close();
     } catch (IOException e) {
       e.printStackTrace();

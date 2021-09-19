@@ -84,4 +84,17 @@ public class Item {
   public int hashCode() {
     return Objects.hash(getType(), getQuantity(), getSalesTaxCategories(), getBasePrice());
   }
+
+  @Override
+  public String toString() {
+    return "Item{"
+        + "type='"
+        + type
+        + '\''
+        + ", quantity="
+        + quantity
+        + ", basePrice="
+        + basePrice
+        + '}';
+  }
 }

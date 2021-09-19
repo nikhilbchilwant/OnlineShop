@@ -7,6 +7,9 @@ import org.jetbrains.annotations.NotNull;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * Calculates sales taxes
+ */
 public class TaxCalculator {
 
   public static final BigDecimal ROUND_FACTOR = BigDecimal.valueOf(0.05);
