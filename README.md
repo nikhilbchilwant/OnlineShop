@@ -23,6 +23,14 @@ A sample `orders.txt` file:
 
 The app was designed to emulate real life supermarket scenario. So, one goes to the supermarket with text description of the `Order`. Then we fetch `Item` from the shelf and add them to `Cart`. At the checkout counter, we `printBill`.
 
+The application executes steps as below:
+1. Reads orders from the text file. (`OnlineShop.java`)
+2. Now, for each order, creates `Item` objects.
+3. Passes the list of `Item`s to the billing app.
+4. The billing app calculates taxes for each `Item`.
+5. All `Item`s are pushed into the `Cart`.
+6. `printBill`
+
 # Development
 
 - The app was built using bottom-up TDD approach.
